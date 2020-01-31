@@ -65,26 +65,26 @@ func DaySet(whichOpe bool, day *int, month int, isLeap bool) {
 			if *day == 1 {
 				*day = 31
 			} else {
-				*day++
+				*day--
 			}
 		case 4, 6, 9, 11:
 			if *day == 1 {
 				*day = 30
 			} else {
-				*day++
+				*day--
 			}
 		case 2:
 			if isLeap {
 				if *day == 1 {
 					*day = 29
 				} else {
-					*day++
+					*day--
 				}
 			} else {
 				if *day == 1 {
 					*day = 28
 				} else {
-					*day++
+					*day--
 				}
 			}
 		}
