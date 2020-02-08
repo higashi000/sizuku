@@ -8,16 +8,14 @@ import (
 	"os"
 )
 
-type ToDoList struct {
-	ToDo []struct {
-		Name      string `json:"name"`
-		Details   string `json:"details"`
-		StartTime string `json:"starttime"`
-		EndTime   string `json:"endtime"`
-	} `json:"todo"`
+type ToDo struct {
+	Name      string `json:"name"`
+	Details   string `json:"details"`
+	StartTime string `json:"starttime"`
+	EndTime   string `json:"endtime"`
 }
 
-func GetToDo() (ToDoList, error) {
+func GetToDo() ([]ToDo, error) {
 	homeEnv := os.Getenv("HOME")
 	fp, err := os.Open(homeEnv + `/.sizukuToDo.json`)
 	if err != nil {
@@ -30,7 +28,7 @@ func GetToDo() (ToDoList, error) {
 		log.Fatal(err)
 	}
 
-	var todolist ToDoList
+	var todolist []ToDo
 
 	strData := string(data)
 
@@ -39,9 +37,9 @@ func GetToDo() (ToDoList, error) {
 		log.Fatal(err)
 	}
 
-	fmt.Println(todolist.ToDo[0].Name)
-	fmt.Println(todolist.ToDo[0].Details)
+	fmt.Println(todolist[0].Name)
+	fmt.Println(todolist[0].Details)
 
 	fp.Close()
-	return ToDoList{nil}, err
+	return todolist, err
 }
