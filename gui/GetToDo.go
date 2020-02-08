@@ -2,17 +2,15 @@ package gui
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 )
 
 type ToDo struct {
-	Name      string `json:"name"`
-	Details   string `json:"details"`
-	StartTime string `json:"starttime"`
-	EndTime   string `json:"endtime"`
+	Title   string `json:"name"`
+	Details string `json:"details"`
+	Limit   string `json:"limit"`
 }
 
 func GetToDo() ([]ToDo, error) {
@@ -36,9 +34,6 @@ func GetToDo() ([]ToDo, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println(todolist[0].Name)
-	fmt.Println(todolist[0].Details)
 
 	fp.Close()
 	return todolist, err
