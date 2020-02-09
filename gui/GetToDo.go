@@ -14,8 +14,8 @@ type ToDo struct {
 }
 
 func GetToDo() ([]ToDo, error) {
-	homeEnv := os.Getenv("HOME")
-	fp, err := os.Open(homeEnv + `/.sizukuToDo.json`)
+	filePath := os.Getenv("HOME") + `/.sizukuToDo.json`
+	fp, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
