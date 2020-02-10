@@ -30,6 +30,7 @@ func GetToDo() ([]ToDo, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer fp.Close()
 
 	fp.Seek(0, 0)
 	data, err := ioutil.ReadAll(fp)
@@ -46,7 +47,6 @@ func GetToDo() ([]ToDo, error) {
 		log.Fatal(err)
 	}
 
-	fp.Close()
 	return todolist, err
 }
 
