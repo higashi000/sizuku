@@ -5,15 +5,11 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+
+	"github.com/higashi000/sizuku/ToDo"
 )
 
-type ToDo struct {
-	Title   string `json:"name"`
-	Details string `json:"details"`
-	Limit   string `json:"limit"`
-}
-
-func GetToDoList() ([]ToDo, error) {
+func GetToDoList() ([]ToDo.ToDoData, error) {
 	filePath := os.Getenv("HOME") + `/.sizukuToDo.json`
 
 	if !CheckExistence(filePath) {
@@ -38,7 +34,7 @@ func GetToDoList() ([]ToDo, error) {
 		log.Fatal(err)
 	}
 
-	var todolist []ToDo
+	var todolist []ToDo.ToDoData
 
 	strData := string(data)
 
