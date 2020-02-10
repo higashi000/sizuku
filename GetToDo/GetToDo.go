@@ -1,4 +1,4 @@
-package gui
+package GetToDo
 
 import (
 	"encoding/json"
@@ -13,7 +13,7 @@ type ToDo struct {
 	Limit   string `json:"limit"`
 }
 
-func GetToDo() ([]ToDo, error) {
+func GetToDoList() ([]ToDo, error) {
 	filePath := os.Getenv("HOME") + `/.sizukuToDo.json`
 
 	if !CheckExistence(filePath) {
