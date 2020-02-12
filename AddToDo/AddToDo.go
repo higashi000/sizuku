@@ -18,7 +18,7 @@ func NewToDo() {
 	fmt.Scanf("%s", &newTask.Name)
 	fmt.Print("Task Details >> ")
 	fmt.Scanf("%s", &newTask.Details)
-	fmt.Print("Task Limit (default none) >> ")
+	fmt.Print("Task Limit (YYYY/MM/DD) >> ")
 	fmt.Scanf("%s", &newTask.Limit)
 
 	if newTask.Limit == "" {
