@@ -47,8 +47,6 @@ func NewToDo() {
 
 	todolist = append(todolist, newTask)
 
-	fmt.Println(todolist)
-
 	todolistJson, err := json.MarshalIndent(todolist, "", "  ")
 	err = ioutil.WriteFile(filePath, todolistJson, 0664)
 	if err != nil {
