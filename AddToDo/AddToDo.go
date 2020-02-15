@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/higashi000/sizuku/GetToDo"
 	"github.com/higashi000/sizuku/ToDo"
@@ -18,8 +19,15 @@ func NewToDo() {
 	fmt.Scanf("%s", &newTask.Name)
 	fmt.Print("Task Details >> ")
 	fmt.Scanf("%s", &newTask.Details)
-	fmt.Print("Task Limit (YYYY/MM/DD) >> ")
-	fmt.Scanf("%s", &newTask.Limit)
+
+	for {
+		fmt.Print("Task Limit YYYY/MM/DD >> ")
+		fmt.Scanf("%s", &newTask.Limit)
+
+		if CheckYYYYMMDD(newTask.Limit) || newTask.Limit == "" {
+			break
+		}
+	}
 
 	if newTask.Limit == "" {
 		newTask.Limit = "none"
@@ -51,5 +59,19 @@ func NewToDo() {
 	err = ioutil.WriteFile(filePath, todolistJson, 0664)
 	if err != nil {
 		log.Fatal(err)
+	}
+}
+
+func CheckYYYYMMDD(date string) bool {
+	parseDate := strings.Split(date, "/")
+
+	if (len(parseDate) > 3) || (1 > len(parseDate)) {
+		return false
+	} else {
+		if (len(parseDate[0]) == 4) && (len(parseDate[1]) == 2) && (len(parseDate[2]) == 2) {
+			return true
+		} else {
+			return false
+		}
 	}
 }
