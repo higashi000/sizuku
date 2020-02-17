@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/higashi000/sizuku/ToDo"
 )
 
 func CheckTimeLimit(date string) bool {
@@ -32,4 +34,16 @@ func CheckTimeLimit(date string) bool {
 	}
 
 	return true
+}
+
+func DeleteOverLimit(todolist []ToDo.ToDoData) []ToDo.ToDoData {
+	var newtodolist []ToDo.ToDoData
+
+	for _, e := range todolist {
+		if !CheckTimeLimit(e.Limit) {
+			newtodolist = append(newtodolist, e)
+		}
+	}
+
+	return newtodolist
 }
