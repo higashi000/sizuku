@@ -1,6 +1,7 @@
 package AddToDo
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -13,12 +14,19 @@ import (
 )
 
 func NewToDo() {
+	var sc = bufio.NewScanner(os.Stdin)
 	var newTask ToDo.ToDoData
 	var todolist []ToDo.ToDoData
+
 	fmt.Print("Task Title >> ")
-	fmt.Scanf("%s", &newTask.Name)
+	if sc.Scan() {
+		newTask.Name = sc.Text()
+	}
+
 	fmt.Print("Task Details >> ")
-	fmt.Scanf("%s", &newTask.Details)
+	if sc.Scan() {
+		newTask.Details = sc.Text()
+	}
 
 	for {
 		fmt.Print("Task Limit YYYY/MM/DD >> ")
